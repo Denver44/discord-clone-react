@@ -26,6 +26,6 @@ yarn-error.log*
 .package.json
 .gitignore
 Steps.md
-.firebase
+/.firebase
 .firebaserc
 firebase.json
