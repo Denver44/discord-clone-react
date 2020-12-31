@@ -1,0 +1,25 @@
+.Login {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.Login__logo > img {
+  width: 100% !important;
+  height: 300px !important;
+}
+
+.Login__Button {
+  font-weight: 700 !important;
+  width: 300px !important;
+  color: #eff2f5 !important;
+}
+
+.Login__Button:hover {
+  color: #7289da !important;
+  background-color: black !important;
+}
