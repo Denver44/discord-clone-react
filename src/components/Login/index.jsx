@@ -1,7 +1,7 @@
-import React from "react";
-import "./Login.css";
-import { Button } from "@material-ui/core";
-import { auth, provider } from "./firebase.js";
+import React from 'react';
+import './style.css';
+import { Button } from '@material-ui/core';
+import { auth, provider } from '../../firebase/firebase.js';
 
 function Login() {
   const signIn = () => {

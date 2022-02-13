@@ -1,33 +1,33 @@
-import React, { useState, useEffect } from "react";
-import "./chat.css";
-import ChatHeader from "./ChatHeader";
-import AddCircleIcon from "@material-ui/icons/AddCircle";
-import CardGiftcardIcon from "@material-ui/icons/CardGiftcard";
-import GifIcon from "@material-ui/icons/Gif";
-import EmojiEmotionsIcon from "@material-ui/icons/EmojiEmotions";
-import Messages from "./Messages";
-import { selectChannelId, selectChannelName } from "./features/appSlice";
-import { selectUser } from "./features/userSlice";
-import { useSelector } from "react-redux";
-import db from "./firebase";
-import firebase from "firebase";
+import React, { useState, useEffect } from 'react';
+import './style.css';
+import ChatHeader from '../ChatHeader';
+import AddCircleIcon from '@material-ui/icons/AddCircle';
+import CardGiftcardIcon from '@material-ui/icons/CardGiftcard';
+import GifIcon from '@material-ui/icons/Gif';
+import EmojiEmotionsIcon from '@material-ui/icons/EmojiEmotions';
+import Messages from '../Message';
+import { selectChannelId, selectChannelName } from '../../features/appSlice';
+import { selectUser } from '../../features/userSlice';
+import { useSelector } from 'react-redux';
+import db from '../../firebase/firebase.js';
+import firebase from 'firebase';
 
 function Chat() {
   const channelName = useSelector(selectChannelName);
   const channelId = useSelector(selectChannelId);
   const user = useSelector(selectUser);
-  const [input, setInput] = useState("");
+  const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
   // console.log(input);
 
   const handle__submit = (e) => {
     e.preventDefault();
-    db.collection("channels").doc(channelId).collection("messages").add({
+    db.collection('channels').doc(channelId).collection('messages').add({
       timestamp: firebase.firestore.FieldValue.serverTimestamp(),
       message: input,
       user: user,
     });
-    setInput("");
+    setInput('');
   };
 
   const input__handler = (e) => {
@@ -37,10 +37,10 @@ function Chat() {
 
   useEffect(() => {
     if (channelId) {
-      db.collection("channels")
+      db.collection('channels')
         .doc(channelId)
-        .collection("messages")
-        .orderBy("timestamp", "desc")
+        .collection('messages')
+        .orderBy('timestamp', 'desc')
         .onSnapshot((snapshot) =>
           setMessages(snapshot.docs.map((doc) => doc.data()))
         );

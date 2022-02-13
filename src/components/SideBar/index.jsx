@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
-import "./sidebar.css";
-import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
-import AddIcon from "@material-ui/icons/Add";
-import SidebarChannel from "./SidebarChannel";
-import SignalCellularAltIcon from "@material-ui/icons/SignalCellularAlt";
-import CallIcon from "@material-ui/icons/Call";
-import InfoIcon from "@material-ui/icons/Info";
-import { Avatar } from "@material-ui/core";
-import MicIcon from "@material-ui/icons/Mic";
-import HeadsetIcon from "@material-ui/icons/Headset";
-import SettingsIcon from "@material-ui/icons/Settings";
-import { selectUser } from "./features/userSlice";
-import { useSelector } from "react-redux";
-import db, { auth } from "./firebase";
+import React, { useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
+import { selectUser } from '../../features/userSlice';
+import db, { auth } from '../../firebase/firebase';
+import { Avatar } from '@material-ui/core';
+import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import AddIcon from '@material-ui/icons/Add';
+import SignalCellularAltIcon from '@material-ui/icons/SignalCellularAlt';
+import CallIcon from '@material-ui/icons/Call';
+import InfoIcon from '@material-ui/icons/Info';
+import MicIcon from '@material-ui/icons/Mic';
+import HeadsetIcon from '@material-ui/icons/Headset';
+import SettingsIcon from '@material-ui/icons/Settings';
+import SidebarChannel from '../SideBarChannel';
+import './style.css';
 
 function Sidebar() {
   const user = useSelector(selectUser);
@@ -20,7 +20,7 @@ function Sidebar() {
   const [channels, setChannels] = useState([]);
 
   useEffect(() => {
-    db.collection("channels").onSnapshot((snapshot) => {
+    db.collection('channels').onSnapshot((snapshot) => {
       setChannels(
         snapshot.docs.map((doc) => ({
           id: doc.id,
@@ -31,10 +31,10 @@ function Sidebar() {
   }, []);
 
   const handleAddChannel = () => {
-    const channelName = prompt("Enter a new Channel Name");
+    const channelName = prompt('Enter a new Channel Name');
 
     if (channelName) {
-      db.collection("channels").add({
+      db.collection('channels').add({
         channelName: channelName,
       });
     }
