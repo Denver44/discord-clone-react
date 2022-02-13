@@ -29,3 +29,4 @@ Steps.md
 /.firebase
 .firebaserc
 firebase.json
+.eslintcache
